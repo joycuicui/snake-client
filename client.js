@@ -1,29 +1,23 @@
 const net = require("net");
 
-// const connect = function () {
-//   const conn = net.createConnection({
-//     host: "165.227.47.243",
-//     port: 50541,
-//   });
+const connect = function () {
+  const conn = net.createConnection({
+    host: "165.227.47.243",
+    port: 50541,
+  });
 
-//   conn.setEncoding("utf8");
+  conn.setEncoding("utf8");
 
-//   conn.on("data", (message) => {
-//     console.log(message);
-//   });
+  conn.on("connect", function () {
+    console.log("Successfully connected to game server!");
+    conn.write("Name: 🌟⭐️🌟");
+  });
 
-//   return conn;
-// };
+  conn.on("data", (message) => {
+    console.log(message);
+  });
 
-const conn = net.createConnection({
-  host: "165.227.47.243",
-  port: 50541,
-});
+  return conn;
+};
 
-const encoding = conn.setEncoding("utf8");
-
-const handleData = conn.on("data", (message) => {
-  console.log(message);
-});
-
-module.exports = { conn, encoding, handleData };
+module.exports = { connect };
