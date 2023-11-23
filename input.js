@@ -1,3 +1,5 @@
+const { messages } = require("./constants");
+
 let connection;
 
 const setupInput = function (conn) {
@@ -27,11 +29,8 @@ const handleUserInput = function (key) {
   if (key === "d") {
     connection.write("Move: right");
   }
-  if (key === "f") {
-    connection.write("Say: 🤩🤩🤩🤩🤩");
-  }
-  if (key === "e") {
-    connection.write("Say: 🤓🤓🤓🤓🤓");
+  if (messages[key]) {
+    connection.write(messages[key]);
   }
 };
 
